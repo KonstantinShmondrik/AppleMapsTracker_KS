@@ -9,21 +9,37 @@
 /* Begin PBXBuildFile section */
 		00FFDD8929182A1F00DA1C47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */; };
 		00FFDD8B29182A1F00DA1C47 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */; };
-		00FFDD8D29182A1F00DA1C47 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDD8C29182A1F00DA1C47 /* ViewController.swift */; };
 		00FFDD9229182A2300DA1C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00FFDD9129182A2300DA1C47 /* Assets.xcassets */; };
 		00FFDD9529182A2300DA1C47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00FFDD9329182A2300DA1C47 /* LaunchScreen.storyboard */; };
 		00FFDDA729182C0D00DA1C47 /* AppStartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDA629182C0D00DA1C47 /* AppStartManager.swift */; };
+		00FFDDAD29192C3400DA1C47 /* MapsSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDAC29192C3400DA1C47 /* MapsSceneViewController.swift */; };
+		00FFDDAF29192C5000DA1C47 /* MapsSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDAE29192C5000DA1C47 /* MapsSceneView.swift */; };
+		00FFDDB229192CF100DA1C47 /* UIButton+CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDB129192CF100DA1C47 /* UIButton+CircularButton.swift */; };
+		00FFDDB5291940AF00DA1C47 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDB4291940AF00DA1C47 /* UIViewController+Alert.swift */; };
+		00FFDDB82919414100DA1C47 /* Array+middle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDB72919414100DA1C47 /* Array+middle.swift */; };
+		00FFDDBB291941ED00DA1C47 /* MapKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDBA291941ED00DA1C47 /* MapKitExtensions.swift */; };
+		00FFDDBD2919479D00DA1C47 /* MapsSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDBC2919479D00DA1C47 /* MapsSceneViewModel.swift */; };
+		00FFDDBF2919481400DA1C47 /* UserPersistedRouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDBE2919481400DA1C47 /* UserPersistedRouteModel.swift */; };
+		00FFDDC2291948DB00DA1C47 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 00FFDDC1291948DB00DA1C47 /* Realm */; };
+		00FFDDC4291948DB00DA1C47 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 00FFDDC3291948DB00DA1C47 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00FFDD8529182A1F00DA1C47 /* AppleMapsTracker_KS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMapsTracker_KS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		00FFDD8C29182A1F00DA1C47 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		00FFDD9129182A2300DA1C47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00FFDD9429182A2300DA1C47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00FFDD9629182A2300DA1C47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00FFDDA629182C0D00DA1C47 /* AppStartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartManager.swift; sourceTree = "<group>"; };
+		00FFDDAC29192C3400DA1C47 /* MapsSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsSceneViewController.swift; sourceTree = "<group>"; };
+		00FFDDAE29192C5000DA1C47 /* MapsSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsSceneView.swift; sourceTree = "<group>"; };
+		00FFDDB129192CF100DA1C47 /* UIButton+CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+CircularButton.swift"; sourceTree = "<group>"; };
+		00FFDDB4291940AF00DA1C47 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		00FFDDB72919414100DA1C47 /* Array+middle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+middle.swift"; sourceTree = "<group>"; };
+		00FFDDBA291941ED00DA1C47 /* MapKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitExtensions.swift; sourceTree = "<group>"; };
+		00FFDDBC2919479D00DA1C47 /* MapsSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsSceneViewModel.swift; sourceTree = "<group>"; };
+		00FFDDBE2919481400DA1C47 /* UserPersistedRouteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersistedRouteModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +47,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00FFDDC4291948DB00DA1C47 /* RealmSwift in Frameworks */,
+				00FFDDC2291948DB00DA1C47 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,8 +88,8 @@
 				00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */,
 				00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */,
 				00FFDD9D29182A7A00DA1C47 /* BusinessLogic */,
-				00FFDD9F29182A9700DA1C47 /* Flows */,
 				00FFDD9E29182A8B00DA1C47 /* Entity */,
+				00FFDD9F29182A9700DA1C47 /* Flows */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -87,6 +105,7 @@
 		00FFDD9E29182A8B00DA1C47 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				00FFDDBE2919481400DA1C47 /* UserPersistedRouteModel.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -94,7 +113,7 @@
 		00FFDD9F29182A9700DA1C47 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				00FFDD8C29182A1F00DA1C47 /* ViewController.swift */,
+				00FFDDA829192BDB00DA1C47 /* MapsScene */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -111,6 +130,7 @@
 		00FFDDA129182ABC00DA1C47 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				00FFDDB029192CE000DA1C47 /* Buttons */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -118,6 +138,9 @@
 		00FFDDA229182AC800DA1C47 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				00FFDDB92919417A00DA1C47 /* MapKit */,
+				00FFDDB62919412800DA1C47 /* Array */,
+				00FFDDB32919409F00DA1C47 /* Alert */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -147,6 +170,72 @@
 			path = AppStartManager;
 			sourceTree = "<group>";
 		};
+		00FFDDA829192BDB00DA1C47 /* MapsScene */ = {
+			isa = PBXGroup;
+			children = (
+				00FFDDAB29192BF800DA1C47 /* Controller */,
+				00FFDDAA29192BF100DA1C47 /* View */,
+				00FFDDA929192BE400DA1C47 /* ViewModel */,
+			);
+			path = MapsScene;
+			sourceTree = "<group>";
+		};
+		00FFDDA929192BE400DA1C47 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				00FFDDBC2919479D00DA1C47 /* MapsSceneViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		00FFDDAA29192BF100DA1C47 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00FFDDAE29192C5000DA1C47 /* MapsSceneView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		00FFDDAB29192BF800DA1C47 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				00FFDDAC29192C3400DA1C47 /* MapsSceneViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		00FFDDB029192CE000DA1C47 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				00FFDDB129192CF100DA1C47 /* UIButton+CircularButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		00FFDDB32919409F00DA1C47 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				00FFDDB4291940AF00DA1C47 /* UIViewController+Alert.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		00FFDDB62919412800DA1C47 /* Array */ = {
+			isa = PBXGroup;
+			children = (
+				00FFDDB72919414100DA1C47 /* Array+middle.swift */,
+			);
+			path = Array;
+			sourceTree = "<group>";
+		};
+		00FFDDB92919417A00DA1C47 /* MapKit */ = {
+			isa = PBXGroup;
+			children = (
+				00FFDDBA291941ED00DA1C47 /* MapKitExtensions.swift */,
+			);
+			path = MapKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -163,6 +252,10 @@
 			dependencies = (
 			);
 			name = AppleMapsTracker_KS;
+			packageProductDependencies = (
+				00FFDDC1291948DB00DA1C47 /* Realm */,
+				00FFDDC3291948DB00DA1C47 /* RealmSwift */,
+			);
 			productName = AppleMapsTracker_KS;
 			productReference = 00FFDD8529182A1F00DA1C47 /* AppleMapsTracker_KS.app */;
 			productType = "com.apple.product-type.application";
@@ -191,6 +284,9 @@
 				Base,
 			);
 			mainGroup = 00FFDD7C29182A1F00DA1C47;
+			packageReferences = (
+				00FFDDC0291948DB00DA1C47 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 00FFDD8629182A1F00DA1C47 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -217,10 +313,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00FFDD8D29182A1F00DA1C47 /* ViewController.swift in Sources */,
+				00FFDDB82919414100DA1C47 /* Array+middle.swift in Sources */,
+				00FFDDBF2919481400DA1C47 /* UserPersistedRouteModel.swift in Sources */,
+				00FFDDBD2919479D00DA1C47 /* MapsSceneViewModel.swift in Sources */,
 				00FFDD8929182A1F00DA1C47 /* AppDelegate.swift in Sources */,
+				00FFDDBB291941ED00DA1C47 /* MapKitExtensions.swift in Sources */,
 				00FFDDA729182C0D00DA1C47 /* AppStartManager.swift in Sources */,
+				00FFDDAD29192C3400DA1C47 /* MapsSceneViewController.swift in Sources */,
+				00FFDDAF29192C5000DA1C47 /* MapsSceneView.swift in Sources */,
 				00FFDD8B29182A1F00DA1C47 /* SceneDelegate.swift in Sources */,
+				00FFDDB5291940AF00DA1C47 /* UIViewController+Alert.swift in Sources */,
+				00FFDDB229192CF100DA1C47 /* UIButton+CircularButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +465,8 @@
 				DEVELOPMENT_TEAM = T8K8YS2863;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppleMapsTracker_KS/Environments/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -389,6 +494,8 @@
 				DEVELOPMENT_TEAM = T8K8YS2863;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppleMapsTracker_KS/Environments/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -428,6 +535,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		00FFDDC0291948DB00DA1C47 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.32.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		00FFDDC1291948DB00DA1C47 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00FFDDC0291948DB00DA1C47 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		00FFDDC3291948DB00DA1C47 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00FFDDC0291948DB00DA1C47 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 00FFDD7D29182A1F00DA1C47 /* Project object */;
 }
