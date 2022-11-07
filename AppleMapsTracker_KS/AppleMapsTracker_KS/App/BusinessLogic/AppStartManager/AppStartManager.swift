@@ -16,8 +16,8 @@ class StartManager {
     }
     
     func start() {
-        let rootVC = ViewController()
-        rootVC.navigationItem.title = "Карта"
+        let rootVC = MapsSceneViewController()
+//        rootVC.navigationItem.title = "Карта"
         
         let navVC = self.configuredNavigationController
         navVC.viewControllers = [rootVC]
@@ -28,7 +28,7 @@ class StartManager {
     
     private lazy var configuredNavigationController: UINavigationController = {
         let navVC = UINavigationController()
-        navVC.navigationBar.backgroundColor = .white
+//        navVC.navigationBar.backgroundColor = .white
         navVC.navigationBar.barTintColor = .black
         navVC.navigationBar.isTranslucent = true
         navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
