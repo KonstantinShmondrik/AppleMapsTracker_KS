@@ -1,5 +1,5 @@
 //
-//  AuthView.swift
+//  RegistrationView.swift
 //  AppleMapsTracker_KS
 //
 //  Created by Константин Шмондрик on 09.11.2022.
@@ -8,13 +8,12 @@
 import UIKit
 
 
-protocol AuthViewProtocol: AnyObject {
-    func tapLoginButton(userName: String, password: String)
+protocol RegistViewProtocol: AnyObject {
+    //    func tapRegistButton(user: User)
     func tapRegistButton()
-    
 }
 
-class AuthView: UIView {
+class RegistrationView: UIView {
     
     // MARK: - Subviews
     private(set) lazy var scrollView: UIScrollView = {
@@ -23,8 +22,19 @@ class AuthView: UIView {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isPagingEnabled = false
         
-        
         return scrollView
+    }()
+    
+    private(set) lazy var hederLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Регистрация пользователя"
+        label.numberOfLines = 1
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 20.0)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
     }()
     
     private(set) lazy var loginTexField: UITextField = {
@@ -32,7 +42,6 @@ class AuthView: UIView {
         textField.borderStyle = .bezel
         textField.attributedPlaceholder = NSAttributedString(string: "Логин", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         textField.textColor = .black
-        textField.autocapitalizationType = .none
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         return textField
@@ -40,44 +49,41 @@ class AuthView: UIView {
     
     private(set) lazy var passwordTexField: UITextField = {
         let textField = UITextField()
-        textField.textColor = .black
-        textField.attributedPlaceholder = NSAttributedString(string: "Пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         textField.borderStyle = .bezel
-        textField.autocapitalizationType = .none
+        textField.attributedPlaceholder = NSAttributedString(string: "Пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         return textField
-    }()
-    
-    private(set) lazy var loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = .blue
-        button.tintColor = .white
-        button.setTitle("Войти", for: .normal)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 16.0
-        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
     }()
     
     private(set) lazy var registButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .blue
         button.tintColor = .white
+        button.setTitle("Зарегестрироваться", for: .normal)
+        button.clipsToBounds = true
         button.layer.cornerRadius = 16.0
-        button.setTitle("Регистрация", for: .normal)
         button.addTarget(self, action: #selector(registButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
     
-
+    private(set) lazy var cleanAllButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .blue
+        button.tintColor = .white
+        button.layer.cornerRadius = 16.0
+        button.setTitle("Очистить форму", for: .normal)
+        button.addTarget(self, action: #selector(cleanAllButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
     
     // MARK: - Properties
-    weak var delegate: AuthViewProtocol?
+    weak var delegate: RegistViewProtocol?
     
     // MARK: - Init
     
@@ -87,7 +93,6 @@ class AuthView: UIView {
         self.setupControls()
         self.registerNotifications()
         self.hideKeyboardGesture()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -99,45 +104,54 @@ class AuthView: UIView {
     private func configureUI() {
         self.backgroundColor = .white
         self.addSubview(self.scrollView)
-        self.scrollView.addSubview(self.loginTexField)
-        self.scrollView.addSubview(self.passwordTexField)
-        self.scrollView.addSubview(self.loginButton)
-        self.scrollView.addSubview(self.registButton)
+        
+        [self.hederLabel,
+         self.loginTexField,
+         self.passwordTexField,
+         self.registButton,
+         self.cleanAllButton
+        ].forEach {
+            self.scrollView.addSubview($0)
+        }
         
         NSLayoutConstraint.activate([
-            
             self.scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0.0),
             self.scrollView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor,constant: 0.0),
             self.scrollView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor,constant: 0.0),
             self.scrollView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: 0.0),
             
-            self.loginTexField.topAnchor.constraint(lessThanOrEqualTo: self.scrollView.topAnchor, constant: 50),
+            self.hederLabel.topAnchor.constraint(lessThanOrEqualTo: self.scrollView.topAnchor, constant: 20),
+            self.hederLabel.heightAnchor.constraint(equalToConstant: 30.0),
+            self.hederLabel.widthAnchor.constraint(equalToConstant: 400.0),
+            self.hederLabel.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
+            
+            self.loginTexField.topAnchor.constraint(equalTo: self.hederLabel.bottomAnchor, constant: 10.0),
             self.loginTexField.heightAnchor.constraint(equalToConstant: 50.0),
             self.loginTexField.widthAnchor.constraint(equalToConstant: 350.0),
             self.loginTexField.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
             
-            self.passwordTexField.topAnchor.constraint(equalTo: self.loginTexField.bottomAnchor, constant: 20.0),
+            self.passwordTexField.topAnchor.constraint(equalTo: self.loginTexField.bottomAnchor, constant: 10.0),
             self.passwordTexField.heightAnchor.constraint(equalToConstant: 50.0),
             self.passwordTexField.widthAnchor.constraint(equalToConstant: 350.0),
             self.passwordTexField.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
             
-            self.loginButton.topAnchor.constraint(equalTo: self.passwordTexField.bottomAnchor, constant: 30.0),
-            self.loginButton.heightAnchor.constraint(equalToConstant: 50.0),
-            self.loginButton.widthAnchor.constraint(equalToConstant: 250.0),
-            self.loginButton.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
-            
-            self.registButton.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 20.0),
+            self.registButton.topAnchor.constraint(equalTo: self.passwordTexField.bottomAnchor, constant: 30.0),
             self.registButton.heightAnchor.constraint(equalToConstant: 50.0),
             self.registButton.widthAnchor.constraint(equalToConstant: 250.0),
-            self.registButton.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor)
+            self.registButton.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
+            
+            self.cleanAllButton.topAnchor.constraint(equalTo: self.registButton.bottomAnchor, constant: 20.0),
+            self.cleanAllButton.heightAnchor.constraint(equalToConstant: 50.0),
+            self.cleanAllButton.widthAnchor.constraint(equalToConstant: 250.0),
+            self.cleanAllButton.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
         ])
     }
     
     // MARK: - private func
     
     private func setupControls() {
-        loginButton.backgroundColor = UIColor.opaqueSeparator
-        loginButton.isEnabled = false
+        registButton.backgroundColor = UIColor.opaqueSeparator
+        registButton.isEnabled = false
         
         [loginTexField, passwordTexField].forEach {
             $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
@@ -170,20 +184,22 @@ class AuthView: UIView {
         scrollView.addGestureRecognizer(hideKeyboardGesture)
     }
     
-   
     // MARK: - Actions
     
-    @objc private func loginButtonPressed() {
-        let userName = loginTexField.text ?? ""
-        let password = passwordTexField.text ?? ""
-        delegate?.tapLoginButton(userName: userName, password: password)
-        loginTexField.text = ""
-        passwordTexField.text = ""
+    @objc private func registButtonPressed() {
+        //        let user = User(login: loginTexField.text ?? "",
+        //                        password: passwordTexField.text ?? "",
+        //                       )
+        
+        delegate?.tapRegistButton()
         
     }
     
-    @objc private func registButtonPressed() {
-        delegate?.tapRegistButton()
+    @objc private func cleanAllButtonPressed() {
+        loginTexField.text = ""
+        passwordTexField.text = ""
+        
+        setupControls()
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -211,11 +227,12 @@ class AuthView: UIView {
     
     @objc func editingChanged(_ textField: UITextField) {
         guard isFormFilled() else {
-            loginButton.backgroundColor = UIColor.opaqueSeparator
-            loginButton.isEnabled = false
+            registButton.backgroundColor = UIColor.opaqueSeparator
+            registButton.isEnabled = false
             return
         }
-        loginButton.backgroundColor = .blue
-        loginButton.isEnabled = true
+        registButton.backgroundColor = .blue
+        registButton.isEnabled = true
     }
+    
 }

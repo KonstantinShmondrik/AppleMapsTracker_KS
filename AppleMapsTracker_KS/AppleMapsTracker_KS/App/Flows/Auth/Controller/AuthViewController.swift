@@ -54,6 +54,6 @@ extension AuthViewController: AuthViewProtocol {
     }
     
     func tapRegistButton() {
-//        navigationController?.pushViewController(RegistrationViewController(), animated: true)
+        navigationController?.pushViewController(RegistrationViewController(), animated: true)
     }
 }
