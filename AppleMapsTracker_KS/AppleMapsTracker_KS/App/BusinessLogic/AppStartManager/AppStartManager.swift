@@ -16,7 +16,7 @@ class StartManager {
     }
     
     func start() {
-        let rootVC = MapsSceneViewController()
+        let rootVC = AuthViewController()
 //        rootVC.navigationItem.title = "Карта"
         
         let navVC = self.configuredNavigationController

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00055854291BDACC00B27EB0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055853291BDACC00B27EB0 /* AuthViewController.swift */; };
+		00055857291BDAEA00B27EB0 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055856291BDAEA00B27EB0 /* AuthView.swift */; };
 		00FFDD8929182A1F00DA1C47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */; };
 		00FFDD8B29182A1F00DA1C47 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */; };
 		00FFDD9229182A2300DA1C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00FFDD9129182A2300DA1C47 /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00055853291BDACC00B27EB0 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		00055856291BDAEA00B27EB0 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		00FFDD8529182A1F00DA1C47 /* AppleMapsTracker_KS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMapsTracker_KS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +59,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00055850291BDAA300B27EB0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				00055852291BDAAF00B27EB0 /* Controller */,
+				00055851291BDAA900B27EB0 /* View */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		00055851291BDAA900B27EB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00055856291BDAEA00B27EB0 /* AuthView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		00055852291BDAAF00B27EB0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				00055853291BDACC00B27EB0 /* AuthViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		00FFDD7C29182A1F00DA1C47 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +142,7 @@
 		00FFDD9F29182A9700DA1C47 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				00055850291BDAA300B27EB0 /* Auth */,
 				00FFDDA829192BDB00DA1C47 /* MapsScene */,
 			);
 			path = Flows;
@@ -316,7 +346,9 @@
 				00FFDDB82919414100DA1C47 /* Array+middle.swift in Sources */,
 				00FFDDBF2919481400DA1C47 /* UserPersistedRouteModel.swift in Sources */,
 				00FFDDBD2919479D00DA1C47 /* MapsSceneViewModel.swift in Sources */,
+				00055857291BDAEA00B27EB0 /* AuthView.swift in Sources */,
 				00FFDD8929182A1F00DA1C47 /* AppDelegate.swift in Sources */,
+				00055854291BDACC00B27EB0 /* AuthViewController.swift in Sources */,
 				00FFDDBB291941ED00DA1C47 /* MapKitExtensions.swift in Sources */,
 				00FFDDA729182C0D00DA1C47 /* AppStartManager.swift in Sources */,
 				00FFDDAD29192C3400DA1C47 /* MapsSceneViewController.swift in Sources */,

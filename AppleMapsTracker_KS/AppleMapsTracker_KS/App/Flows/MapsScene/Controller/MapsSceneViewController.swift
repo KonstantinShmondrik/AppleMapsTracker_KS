@@ -154,7 +154,11 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
         isShowingPreviousRoute = false
         removeAllOverlays()
         
-        if isTracking { viewModel.startTracking() } else { viewModel.stopTracking() }
+        if isTracking {
+            viewModel.startTracking()
+        } else {
+            viewModel.stopTracking()
+        }
         
         if !isTracking && viewModel.persistedRoutesCount > 0 {
             
