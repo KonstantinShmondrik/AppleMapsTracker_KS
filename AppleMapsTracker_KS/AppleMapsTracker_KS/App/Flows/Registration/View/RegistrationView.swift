@@ -9,8 +9,7 @@ import UIKit
 
 
 protocol RegistViewProtocol: AnyObject {
-    //    func tapRegistButton(user: User)
-    func tapRegistButton()
+    func tapRegistButton(login: String, password: String)
 }
 
 class RegistrationView: UIView {
@@ -40,7 +39,7 @@ class RegistrationView: UIView {
     private(set) lazy var loginTexField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .bezel
-        textField.attributedPlaceholder = NSAttributedString(string: "Логин", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.attributedPlaceholder = NSAttributedString(string: "Введите логин", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -50,7 +49,17 @@ class RegistrationView: UIView {
     private(set) lazy var passwordTexField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .bezel
-        textField.attributedPlaceholder = NSAttributedString(string: "Пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.attributedPlaceholder = NSAttributedString(string: "Введите пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.textColor = .black
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        return textField
+    }()
+    
+    private(set) lazy var passwordAgainTextField: UITextField = {
+        let textField = UITextField()
+        textField.borderStyle = .bezel
+        textField.attributedPlaceholder = NSAttributedString(string: "Введите пароль повторно", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -108,6 +117,7 @@ class RegistrationView: UIView {
         [self.hederLabel,
          self.loginTexField,
          self.passwordTexField,
+         self.passwordAgainTextField,
          self.registButton,
          self.cleanAllButton
         ].forEach {
@@ -135,7 +145,12 @@ class RegistrationView: UIView {
             self.passwordTexField.widthAnchor.constraint(equalToConstant: 350.0),
             self.passwordTexField.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
             
-            self.registButton.topAnchor.constraint(equalTo: self.passwordTexField.bottomAnchor, constant: 30.0),
+            self.passwordAgainTextField.topAnchor.constraint(equalTo: self.passwordTexField.bottomAnchor, constant: 10.0),
+            self.passwordAgainTextField.heightAnchor.constraint(equalToConstant: 50.0),
+            self.passwordAgainTextField.widthAnchor.constraint(equalToConstant: 350.0),
+            self.passwordAgainTextField.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
+            
+            self.registButton.topAnchor.constraint(equalTo: self.passwordAgainTextField.bottomAnchor, constant: 30.0),
             self.registButton.heightAnchor.constraint(equalToConstant: 50.0),
             self.registButton.widthAnchor.constraint(equalToConstant: 250.0),
             self.registButton.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
@@ -187,12 +202,14 @@ class RegistrationView: UIView {
     // MARK: - Actions
     
     @objc private func registButtonPressed() {
-        //        let user = User(login: loginTexField.text ?? "",
-        //                        password: passwordTexField.text ?? "",
-        //                       )
+        let login = loginTexField.text ?? ""
+        let password = passwordTexField.text ?? ""
+        let passAgain = passwordAgainTextField.text ?? ""
         
-        delegate?.tapRegistButton()
-        
+        guard login != "", password != "", passAgain != "" else { return }
+        guard password == passAgain else { return }
+
+        delegate?.tapRegistButton(login: login, password: password)
     }
     
     @objc private func cleanAllButtonPressed() {

@@ -9,7 +9,7 @@ import UIKit
 
 
 protocol AuthViewProtocol: AnyObject {
-    func tapLoginButton(userName: String, password: String)
+    func tapLoginButton(login: String, password: String)
     func tapRegistButton()
     
 }
@@ -176,7 +176,7 @@ class AuthView: UIView {
     @objc private func loginButtonPressed() {
         let userName = loginTexField.text ?? ""
         let password = passwordTexField.text ?? ""
-        delegate?.tapLoginButton(userName: userName, password: password)
+        delegate?.tapLoginButton(login: userName, password: password)
         loginTexField.text = ""
         passwordTexField.text = ""
         

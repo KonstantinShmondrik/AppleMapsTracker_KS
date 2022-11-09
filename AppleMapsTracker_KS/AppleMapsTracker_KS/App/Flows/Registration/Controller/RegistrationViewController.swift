@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RegistrationViewController: UIViewController {
     
     private var authView: RegistrationView {
         return self.view as! RegistrationView
     }
+    
+    let realm: Realm = try! Realm()
     
     // MARK: - Lifecycle
     
@@ -36,6 +39,12 @@ class RegistrationViewController: UIViewController {
     
     // MARK: - private func
     
+    private func writeToDB(user: User) {
+        try! realm.write {
+            realm.add(user)
+        }
+    }
+    
     private func showError(_ errorMessage: String) {
         self.okAlert(title: "Ошибка", message: errorMessage, completionHandler: nil)
         
@@ -52,8 +61,24 @@ class RegistrationViewController: UIViewController {
 }
 
 extension RegistrationViewController: RegistViewProtocol {
-    func tapRegistButton() {
-        proceedToWelcomeScreen()
+    func tapRegistButton(login: String, password: String) {
+        let user = User()
+
+        user.login = login
+        user.password = password
+        
+        let userDB = realm.object(ofType: User.self, forPrimaryKey: login)
+        if userDB?.login == login {
+            self.yesNoAlert(title: "Пользователь уже существует", message: "Хотите сменить пароль?") { _ in
+                try! self.realm.write {
+                    userDB?.password = password
+                    self.proceedToWelcomeScreen()
+                }
+            }
+        } else {
+            writeToDB(user: user)
+            proceedToWelcomeScreen()
+        }
     }
 }
 

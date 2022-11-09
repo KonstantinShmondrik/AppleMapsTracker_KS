@@ -11,6 +11,7 @@
 		00055857291BDAEA00B27EB0 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055856291BDAEA00B27EB0 /* AuthView.swift */; };
 		0005585C291BE04A00B27EB0 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0005585B291BE04A00B27EB0 /* RegistrationViewController.swift */; };
 		0005585E291BE06000B27EB0 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0005585D291BE06000B27EB0 /* RegistrationView.swift */; };
+		00055860291BEE2000B27EB0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0005585F291BEE2000B27EB0 /* User.swift */; };
 		00FFDD8929182A1F00DA1C47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */; };
 		00FFDD8B29182A1F00DA1C47 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */; };
 		00FFDD9229182A2300DA1C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00FFDD9129182A2300DA1C47 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		00055856291BDAEA00B27EB0 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		0005585B291BE04A00B27EB0 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		0005585D291BE06000B27EB0 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		0005585F291BEE2000B27EB0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		00FFDD8529182A1F00DA1C47 /* AppleMapsTracker_KS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMapsTracker_KS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				00FFDDBE2919481400DA1C47 /* UserPersistedRouteModel.swift */,
+				0005585F291BEE2000B27EB0 /* User.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				00FFDDBF2919481400DA1C47 /* UserPersistedRouteModel.swift in Sources */,
 				00FFDDBD2919479D00DA1C47 /* MapsSceneViewModel.swift in Sources */,
 				00055857291BDAEA00B27EB0 /* AuthView.swift in Sources */,
+				00055860291BEE2000B27EB0 /* User.swift in Sources */,
 				0005585C291BE04A00B27EB0 /* RegistrationViewController.swift in Sources */,
 				00FFDD8929182A1F00DA1C47 /* AppDelegate.swift in Sources */,
 				00055854291BDACC00B27EB0 /* AuthViewController.swift in Sources */,
