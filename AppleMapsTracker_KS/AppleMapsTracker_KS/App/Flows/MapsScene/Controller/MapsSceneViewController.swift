@@ -15,6 +15,8 @@ import RealmSwift
 class MapsSceneViewController: UIViewController {
     
     // MARK: - Properties
+    var onLogOut: (() -> Void)?
+    
     lazy var viewModel = MapsSceneViewModel(locationManager: locationManager, realm: realm)
     
     private var mapSceneView: MapsSceneView {
@@ -96,7 +98,7 @@ class MapsSceneViewController: UIViewController {
             }
         }
     }
-
+    
     // MARK: - Initialisers
     
     init() {
@@ -119,6 +121,7 @@ class MapsSceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.viewDelegate = self
+        setNavigationBar()
         setupScene()
     }
     
@@ -131,7 +134,7 @@ class MapsSceneViewController: UIViewController {
         mapSceneView.nextRouteButton.alpha = 0
         mapSceneView.zoomInButton.alpha = 0
         mapSceneView.zoomOutButton.alpha = 0
-       
+        
         UIView.animate(withDuration: 0.25) {
             self.mapSceneView.zoomInButton.alpha = 1
             self.mapSceneView.zoomOutButton.alpha = 1
@@ -142,6 +145,23 @@ class MapsSceneViewController: UIViewController {
             mapSceneView.showPreviousRouteButton.alpha = 0
             mapSceneView.deletePersistedRoutesButton.alpha = 0
         }
+    }
+    
+    private func setNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Текущее", style: .done, target: self, action: #selector(currentLocation))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Выйти", style: .done, target: self, action: #selector(logOut))
+    }
+    
+    // MARK: - Actions
+    @objc func currentLocation (sender: UIBarButtonItem) {
+        locationManager.requestLocation()
+        
+    }
+    
+    @objc func logOut() {
+        UserDefaults.standard.set(false, forKey: "isLogin")
+        onLogOut?()
     }
     
 }
@@ -230,7 +250,7 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
             self.isShowingPreviousRoute = false
             self.removeAllOverlays()
             self.viewModel.deleteAllPersistedRoutes()
-        
+            
             UIView.animate(withDuration: 0.25) {
                 self.mapSceneView.deletePersistedRoutesButton.alpha = 0
                 self.mapSceneView.showPreviousRouteButton.alpha = 0
@@ -238,7 +258,6 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
             }
         }
     }
-    
     
 }
 
@@ -306,7 +325,7 @@ extension MapsSceneViewController: MapsSceneViewDelegate {
             let rect = mapSceneView.mapView.overlays.reduce(firstOverlay.boundingMapRect, {$0.union($1.boundingMapRect)})
             mapSceneView.mapView.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100), animated: true)
             zoomValue = mapSceneView.mapView.currentRadius()
-                }
+        }
     }
     
     func showNoPersistedRoutesMessage() {

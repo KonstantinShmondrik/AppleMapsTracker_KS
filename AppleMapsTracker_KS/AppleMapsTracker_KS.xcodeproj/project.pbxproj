@@ -12,11 +12,14 @@
 		0005585C291BE04A00B27EB0 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0005585B291BE04A00B27EB0 /* RegistrationViewController.swift */; };
 		0005585E291BE06000B27EB0 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0005585D291BE06000B27EB0 /* RegistrationView.swift */; };
 		00055860291BEE2000B27EB0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0005585F291BEE2000B27EB0 /* User.swift */; };
+		00055863291C0E6F00B27EB0 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055862291C0E6F00B27EB0 /* BaseCoordinator.swift */; };
+		00055865291C109100B27EB0 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055864291C109100B27EB0 /* ApplicationCoordinator.swift */; };
+		00055867291C12A100B27EB0 /* MapSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055866291C12A100B27EB0 /* MapSceneCoordinator.swift */; };
+		00055869291C12CB00B27EB0 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055868291C12CB00B27EB0 /* AuthCoordinator.swift */; };
 		00FFDD8929182A1F00DA1C47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */; };
 		00FFDD8B29182A1F00DA1C47 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */; };
 		00FFDD9229182A2300DA1C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00FFDD9129182A2300DA1C47 /* Assets.xcassets */; };
 		00FFDD9529182A2300DA1C47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00FFDD9329182A2300DA1C47 /* LaunchScreen.storyboard */; };
-		00FFDDA729182C0D00DA1C47 /* AppStartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDA629182C0D00DA1C47 /* AppStartManager.swift */; };
 		00FFDDAD29192C3400DA1C47 /* MapsSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDAC29192C3400DA1C47 /* MapsSceneViewController.swift */; };
 		00FFDDAF29192C5000DA1C47 /* MapsSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDAE29192C5000DA1C47 /* MapsSceneView.swift */; };
 		00FFDDB229192CF100DA1C47 /* UIButton+CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDDB129192CF100DA1C47 /* UIButton+CircularButton.swift */; };
@@ -35,13 +38,16 @@
 		0005585B291BE04A00B27EB0 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		0005585D291BE06000B27EB0 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		0005585F291BEE2000B27EB0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		00055862291C0E6F00B27EB0 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		00055864291C109100B27EB0 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		00055866291C12A100B27EB0 /* MapSceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSceneCoordinator.swift; sourceTree = "<group>"; };
+		00055868291C12CB00B27EB0 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		00FFDD8529182A1F00DA1C47 /* AppleMapsTracker_KS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMapsTracker_KS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		00FFDD9129182A2300DA1C47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00FFDD9429182A2300DA1C47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00FFDD9629182A2300DA1C47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00FFDDA629182C0D00DA1C47 /* AppStartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartManager.swift; sourceTree = "<group>"; };
 		00FFDDAC29192C3400DA1C47 /* MapsSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsSceneViewController.swift; sourceTree = "<group>"; };
 		00FFDDAE29192C5000DA1C47 /* MapsSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsSceneView.swift; sourceTree = "<group>"; };
 		00FFDDB129192CF100DA1C47 /* UIButton+CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+CircularButton.swift"; sourceTree = "<group>"; };
@@ -115,6 +121,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		00055861291C0DA900B27EB0 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				00055862291C0E6F00B27EB0 /* BaseCoordinator.swift */,
+				00055864291C109100B27EB0 /* ApplicationCoordinator.swift */,
+				00055868291C12CB00B27EB0 /* AuthCoordinator.swift */,
+				00055866291C12A100B27EB0 /* MapSceneCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		00FFDD7C29182A1F00DA1C47 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +164,7 @@
 			children = (
 				00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */,
 				00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */,
+				00055861291C0DA900B27EB0 /* Coordinator */,
 				00FFDD9D29182A7A00DA1C47 /* BusinessLogic */,
 				00FFDD9E29182A8B00DA1C47 /* Entity */,
 				00FFDD9F29182A9700DA1C47 /* Flows */,
@@ -157,7 +175,6 @@
 		00FFDD9D29182A7A00DA1C47 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
-				00FFDDA529182C0000DA1C47 /* AppStartManager */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -223,14 +240,6 @@
 				00FFDD9629182A2300DA1C47 /* Info.plist */,
 			);
 			path = Environments;
-			sourceTree = "<group>";
-		};
-		00FFDDA529182C0000DA1C47 /* AppStartManager */ = {
-			isa = PBXGroup;
-			children = (
-				00FFDDA629182C0D00DA1C47 /* AppStartManager.swift */,
-			);
-			path = AppStartManager;
 			sourceTree = "<group>";
 		};
 		00FFDDA829192BDB00DA1C47 /* MapsScene */ = {
@@ -381,16 +390,19 @@
 				00FFDDBD2919479D00DA1C47 /* MapsSceneViewModel.swift in Sources */,
 				00055857291BDAEA00B27EB0 /* AuthView.swift in Sources */,
 				00055860291BEE2000B27EB0 /* User.swift in Sources */,
+				00055865291C109100B27EB0 /* ApplicationCoordinator.swift in Sources */,
 				0005585C291BE04A00B27EB0 /* RegistrationViewController.swift in Sources */,
+				00055863291C0E6F00B27EB0 /* BaseCoordinator.swift in Sources */,
 				00FFDD8929182A1F00DA1C47 /* AppDelegate.swift in Sources */,
 				00055854291BDACC00B27EB0 /* AuthViewController.swift in Sources */,
+				00055869291C12CB00B27EB0 /* AuthCoordinator.swift in Sources */,
 				00FFDDBB291941ED00DA1C47 /* MapKitExtensions.swift in Sources */,
-				00FFDDA729182C0D00DA1C47 /* AppStartManager.swift in Sources */,
 				0005585E291BE06000B27EB0 /* RegistrationView.swift in Sources */,
 				00FFDDAD29192C3400DA1C47 /* MapsSceneViewController.swift in Sources */,
 				00FFDDAF29192C5000DA1C47 /* MapsSceneView.swift in Sources */,
 				00FFDD8B29182A1F00DA1C47 /* SceneDelegate.swift in Sources */,
 				00FFDDB5291940AF00DA1C47 /* UIViewController+Alert.swift in Sources */,
+				00055867291C12A100B27EB0 /* MapSceneCoordinator.swift in Sources */,
 				00FFDDB229192CF100DA1C47 /* UIButton+CircularButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,8 @@ import RealmSwift
 
 class RegistrationViewController: UIViewController {
     
+    var onRegist: (() -> Void)?
+    
     private var authView: RegistrationView {
         return self.view as! RegistrationView
     }
@@ -27,7 +29,7 @@ class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +56,7 @@ class RegistrationViewController: UIViewController {
         self.okAlert(title: "Поздравляем! Вы зарегестрированны.",
                      message: "Пройдите обратно и войдите в приложение при помощи вашего логина и пароля",
                      completionHandler: { _ in
+            self.onRegist?()
             self.navigationController?.popViewController(animated: true)
         })
     }
@@ -63,7 +66,7 @@ class RegistrationViewController: UIViewController {
 extension RegistrationViewController: RegistViewProtocol {
     func tapRegistButton(login: String, password: String) {
         let user = User()
-
+        
         user.login = login
         user.password = password
         

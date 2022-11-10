@@ -215,6 +215,7 @@ class RegistrationView: UIView {
     @objc private func cleanAllButtonPressed() {
         loginTexField.text = ""
         passwordTexField.text = ""
+        passwordAgainTextField.text = ""
         
         setupControls()
     }

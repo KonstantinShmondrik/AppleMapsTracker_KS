@@ -10,6 +10,9 @@ import RealmSwift
 
 class AuthViewController: UIViewController {
     
+    var onLogin: (() -> Void)?
+    var onRegist: (() -> Void)?
+    
     private var authView: AuthView {
         return self.view as! AuthView
     }
@@ -51,11 +54,6 @@ class AuthViewController: UIViewController {
         self.okAlert(title: "Ошибка авторизации", message: errorMessage, completionHandler: nil)
     }
     
-    private func proceedToWelcomeScreen() {
-       
-//        navigationController?.pushViewController(TabBarViewController(), animated: true)
-    }
-    
 }
 
 // MARK: - AuthViewProtocol
@@ -68,14 +66,14 @@ extension AuthViewController: AuthViewProtocol {
         print(login, password, authenticated(login: login, password: password))
         
         if authenticated(login: login, password: password) {
-            navigationController?.pushViewController(MapsSceneViewController(), animated: true)
-//            self.delegate?.navigateToSuccess()
+            UserDefaults.standard.set(true, forKey: "isLogin")
+            onLogin?()
         } else {
             self.showError("Неверный логин или пароль")
         }
     }
     
     func tapRegistButton() {
-        navigationController?.pushViewController(RegistrationViewController(), animated: true)
+        onRegist?()
     }
 }
