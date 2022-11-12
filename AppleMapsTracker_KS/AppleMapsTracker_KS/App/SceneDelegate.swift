@@ -11,7 +11,50 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     var coordinator: ApplicationCoordinator?
+    var appSwitcherView: UIView?
     
+    func createScreenshotOfCurrentContext() -> UIImage? {
+        UIGraphicsBeginImageContext(self.window?.screen.bounds.size ?? CGSize())
+        guard let currentContext = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        
+        self.window?.layer.render(in: currentContext)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
+    func applyGaussianBlur(on image: UIImage, withBlurFactor blurFactor : CGFloat) -> UIImage? {
+        guard let inputImage = CIImage(image: image) else {
+            return nil
+        }
+        
+        let gaussianFilter = CIFilter(name: "CIGaussianBlur")
+        gaussianFilter?.setValue(inputImage, forKey: kCIInputImageKey)
+        gaussianFilter?.setValue(blurFactor, forKey: kCIInputRadiusKey)
+        
+        guard let outputImage = gaussianFilter?.outputImage else {
+            return nil
+        }
+        
+        return UIImage(ciImage: outputImage)
+    }
+    
+    func hideContent(){
+        let blurredImage = applyGaussianBlur(on: createScreenshotOfCurrentContext() ?? UIImage(), withBlurFactor: 4.5)
+
+        appSwitcherView = UIImageView(image: blurredImage)
+        self.window?.addSubview(appSwitcherView!)
+    }
+    
+    func showContent(){
+        appSwitcherView?.removeFromSuperview()
+    }
+
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -32,13 +75,12 @@ func sceneDidDisconnect(_ scene: UIScene) {
 }
 
 func sceneDidBecomeActive(_ scene: UIScene) {
-    // Called when the scene has moved from an inactive state to an active state.
-    // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+    showContent()
+    
 }
 
 func sceneWillResignActive(_ scene: UIScene) {
-    // Called when the scene will move from an active state to an inactive state.
-    // This may occur due to temporary interruptions (ex. an incoming phone call).
+    hideContent()
 }
 
 func sceneWillEnterForeground(_ scene: UIScene) {
