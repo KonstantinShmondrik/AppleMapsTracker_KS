@@ -206,7 +206,11 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
             isShowingPreviousRoute.toggle()
         }
         
-        if isShowingPreviousRoute { viewModel.loadRoutes() } else { removeAllOverlays() }
+        if isShowingPreviousRoute {
+            viewModel.loadRoutes()
+        } else {
+            removeAllOverlays()
+        }
     }
     
     func zoomInButtonTapped() {
