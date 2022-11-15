@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 
 protocol AuthViewProtocol: AnyObject {
@@ -81,16 +83,18 @@ class AuthView: UIView {
     
     // MARK: - Properties
     weak var delegate: AuthViewProtocol?
+    let disposeBag = DisposeBag()
+   
     
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configureUI()
-        self.setupControls()
+        setupRx()
         self.registerNotifications()
         self.hideKeyboardGesture()
-        
+
     }
     
     required init?(coder: NSCoder) {
@@ -137,22 +141,29 @@ class AuthView: UIView {
     }
     
     // MARK: - private func
-    
-    private func setupControls() {
-        loginButton.backgroundColor = UIColor.opaqueSeparator
-        loginButton.isEnabled = false
+ 
+    private func setupRx() {
+
+        let isLoginValid = loginTexField.rx.text.orEmpty
+            .map { $0.count >= 1 }
+            .share(replay: 1)
         
-        [loginTexField, passwordTexField].forEach {
-            $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        let isPasswordValid = passwordTexField.rx.text.orEmpty
+            .map { $0.count >= 1 }
+            .share(replay: 1)
+        
+        let isEverythingValid = Observable.combineLatest(isLoginValid, isPasswordValid) { (login, password) in
+            return login && password
         }
-    }
-    
-    private func isFormFilled() -> Bool {
-        guard loginTexField.text != "",
-              passwordTexField.text != "" else {
-            return false
-        }
-        return true
+        
+        isEverythingValid
+            .bind(to: loginButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        isEverythingValid
+            .map { $0 ? 1.0 : 0.5 }
+            .bind(to: loginButton.rx.alpha)
+            .disposed(by: disposeBag)
     }
     
     private func registerNotifications() {
@@ -172,13 +183,11 @@ class AuthView: UIView {
         
         scrollView.addGestureRecognizer(hideKeyboardGesture)
     }
-    
-   
+  
     // MARK: - Actions
     
     @objc private func loginButtonPressed() {
-        let userName = loginTexField.text ?? ""
-        let password = passwordTexField.text ?? ""
+        guard let userName = loginTexField.text, let password = passwordTexField.text else { return }
         delegate?.tapLoginButton(login: userName, password: password)
         loginTexField.text = ""
         passwordTexField.text = ""
@@ -210,15 +219,5 @@ class AuthView: UIView {
     
     @objc func hideKeyboard() {
         self.scrollView.endEditing(true)
-    }
-    
-    @objc func editingChanged(_ textField: UITextField) {
-        guard isFormFilled() else {
-            loginButton.backgroundColor = UIColor.opaqueSeparator
-            loginButton.isEnabled = false
-            return
-        }
-        loginButton.backgroundColor = .blue
-        loginButton.isEnabled = true
     }
 }
