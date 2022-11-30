@@ -10,7 +10,7 @@ import UserNotifications
 
 class NotificationsService {
     
-    func startfications() {
+    func startNatifications() {
         
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
@@ -19,8 +19,12 @@ class NotificationsService {
                 return
             }
             
-            self.sendNotificatioRequest(content: self.makeNotificationContent(),
-                                        trigger: self.makeIntervalNotificatioTrigger()
+            self.sendNotificatioRequest(
+                content: self.makeNotificationContent(title: "Пора размяться",
+                                                      subtitle: "Начни прогулку",
+                                                      body: "С каждым шагом ты становишься сильнее",
+                                                      badge: nil),
+                trigger: self.makeIntervalNotificatioTrigger()
             )
         }
         
@@ -38,13 +42,16 @@ class NotificationsService {
         }
     }
     
-    func makeNotificationContent() -> UNNotificationContent {
+    func makeNotificationContent(title: String,
+                                 subtitle: String,
+                                 body: String,
+                                 badge: Int? ) -> UNNotificationContent {
         let content = UNMutableNotificationContent()
         
-        content.title = "Пора размяться"
-        content.subtitle = "Начни прогулку"
-        content.body = "С каждым шагом ты становишься сильнее"
-        content.badge = 1
+        content.title = title
+        content.subtitle = subtitle
+        content.body = body
+        content.badge = badge as NSNumber?
         
         return content
     }
