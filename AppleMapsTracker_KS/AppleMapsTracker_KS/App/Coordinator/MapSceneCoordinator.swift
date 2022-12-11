@@ -19,11 +19,12 @@ final class MapSceneCoordinator: BaseCoordinator {
         let controller = MapsSceneViewController()
        
         controller.onLogOut = { [weak self] in
-            self?.onFinishFlow?()
+            guard let self = self else { return }
+            
+            self.onFinishFlow?()
         }
 
-        let rootController = UINavigationController(rootViewController:
-        controller)
+        let rootController = UINavigationController(rootViewController: controller)
         setAsRoot(rootController)
         self.rootController = rootController
     }

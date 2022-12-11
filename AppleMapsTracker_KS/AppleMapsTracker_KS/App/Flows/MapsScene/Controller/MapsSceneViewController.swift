@@ -152,6 +152,20 @@ class MapsSceneViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Выйти", style: .done, target: self, action: #selector(logOut))
     }
     
+    private func presentImagePicker() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .camera
+        imagePickerController.cameraDevice = .front
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        
+        DispatchQueue.main.async {
+            self.present(imagePickerController, animated: true)
+        }
+    }
+    
     // MARK: - Actions
     @objc func currentLocation (sender: UIBarButtonItem) {
         locationManager.requestLocation()
@@ -165,6 +179,10 @@ class MapsSceneViewController: UIViewController {
 
 // MARK: - MapsSceneViewProtocol
 extension MapsSceneViewController: MapsSceneViewProtocol {
+    func selfieButtonTapped() {
+        presentImagePicker()
+    }
+    
     func startStopTrackingButtonTapped() {
         isTracking.toggle()
         isShowingPreviousRoute = false
@@ -259,6 +277,33 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
 }
 
 // MARK: - Additional extensions
+extension MapsSceneViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        DispatchQueue.main.async {
+            self.isShowingPreviousRoute = false
+           
+            if let image = self.extractImage(from: info) {
+                self.avatarImage = image
+            }
+            picker.dismiss(animated: true)
+        }
+    }
+    
+    private func extractImage(from info: [UIImagePickerController.InfoKey: Any]) -> UIImage? {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            return image
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            return image
+        } else {
+            return nil
+        }
+    }
+}
+
 extension MapsSceneViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {

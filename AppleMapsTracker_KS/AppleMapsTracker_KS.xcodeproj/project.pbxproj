@@ -568,12 +568,14 @@
 				DEVELOPMENT_TEAM = T8K8YS2863;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppleMapsTracker_KS/Environments/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Для селфи";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Очень надо для работы приложения";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -597,12 +599,14 @@
 				DEVELOPMENT_TEAM = T8K8YS2863;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppleMapsTracker_KS/Environments/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Для селфи";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Очень надо для работы приложения";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

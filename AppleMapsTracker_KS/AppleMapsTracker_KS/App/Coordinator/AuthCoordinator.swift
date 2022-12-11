@@ -23,7 +23,9 @@ final class AuthCoordinator: BaseCoordinator {
         }
         
         controller.onLogin = { [weak self] in
-            self?.onFinishFlow?()
+            guard let self = self else { return }
+            
+            self.onFinishFlow?()
         }
         let rootController = UINavigationController(rootViewController: controller)
         setAsRoot(rootController)
