@@ -294,6 +294,7 @@ extension MapsSceneViewController: MKMapViewDelegate {
 extension MapsSceneViewController: MapsSceneViewDelegate {
     func removeAllOverlays() {
         mapSceneView.mapView.removeOverlays(mapSceneView.mapView.overlays)
+        mapSceneView.mapView.removeAnnotations(mapSceneView.mapView.annotations)
     }
     
     func showRoute(_ routesArray: [UserPersistedRoute], index: Int = 0) {
@@ -322,6 +323,13 @@ extension MapsSceneViewController: MapsSceneViewDelegate {
             mapSceneView.mapView.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100), animated: true)
             zoomValue = mapSceneView.mapView.currentRadius()
         }
+        
+        let distance = MKPointAnnotation()
+        distance.title = "Расстояние: \(viewModel.calculateDistance(coordinatesArray)) м."
+        guard let middle = coordinatesArray.middle else { return }
+        
+        distance.coordinate = middle
+        mapSceneView.mapView.addAnnotation(distance)
     }
     
     func showNoPersistedRoutesMessage() {
