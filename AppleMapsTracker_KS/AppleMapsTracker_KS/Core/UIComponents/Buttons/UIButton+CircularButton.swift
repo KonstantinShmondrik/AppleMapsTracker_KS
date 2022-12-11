@@ -11,7 +11,6 @@ class CircularButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         layer.cornerRadius = self.frame.width / 2
     }
     
@@ -21,7 +20,6 @@ class CircularButton: UIButton {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         backgroundColor = UIColor.white.withAlphaComponent(0.85)
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.25

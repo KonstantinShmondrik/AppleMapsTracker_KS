@@ -34,6 +34,5 @@ final class AuthCoordinator: BaseCoordinator {
         let controller = RegistrationViewController()
         rootController?.pushViewController(controller, animated: true)
     }
-    
 }
 

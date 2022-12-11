@@ -257,5 +257,4 @@ class RegistrationView: UIView {
         registButton.backgroundColor = .blue
         registButton.isEnabled = true
     }
-    
 }

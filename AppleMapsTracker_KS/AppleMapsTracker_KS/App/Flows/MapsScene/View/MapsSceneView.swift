@@ -19,7 +19,6 @@ protocol MapsSceneViewProtocol: AnyObject {
     func deletePersistedRoutesButtonTapped()
 }
 
-
 class MapsSceneView: UIView {
     
     weak var delegate: MapsSceneViewProtocol?
@@ -160,24 +159,20 @@ class MapsSceneView: UIView {
             self.zoomOutButton.leftAnchor.constraint(equalTo: startStopTrackingButton.rightAnchor, constant: 10),
             self.zoomOutButton.widthAnchor.constraint(equalToConstant: 50),
             self.zoomOutButton.heightAnchor.constraint(equalToConstant: 50),
-            
         ])
     }
     
     // MARK: - Actions
     @objc func startStopTrackingButtonTapped() {
         self.delegate?.startStopTrackingButtonTapped()
-        
     }
     
     @objc func showPreviousRouteButtonTapped() {
         self.delegate?.showPreviousRouteButtonTapped()
-        
     }
     
     @objc func zoomInButtonTapped() {
         self.delegate?.zoomInButtonTapped()
-        
     }
     
     @objc func zoomOutButtonTapped() {
@@ -192,17 +187,11 @@ class MapsSceneView: UIView {
     
     @objc func nextRouteButtonTapped() {
         self.delegate?.nextRouteButtonTapped()
-        
     }
     
     @objc func deletePersistedRoutesButtonTapped() {
         self.delegate?.deletePersistedRoutesButtonTapped()
-        
     }
-    
-    
-    
-    
 }
 
 

@@ -10,8 +10,6 @@ import MapKit
 import CoreLocation
 import RealmSwift
 
-
-
 class MapsSceneViewController: UIViewController {
     
     // MARK: - Properties
@@ -156,20 +154,17 @@ class MapsSceneViewController: UIViewController {
     // MARK: - Actions
     @objc func currentLocation (sender: UIBarButtonItem) {
         locationManager.requestLocation()
-        
     }
     
     @objc func logOut() {
         UserDefaults.standard.set(false, forKey: "isLogin")
         onLogOut?()
     }
-    
 }
 
 // MARK: - MapsSceneViewProtocol
 extension MapsSceneViewController: MapsSceneViewProtocol {
     func startStopTrackingButtonTapped() {
-        
         isTracking.toggle()
         isShowingPreviousRoute = false
         removeAllOverlays()
@@ -191,7 +186,6 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
     }
     
     func showPreviousRouteButtonTapped() {
-        
         currentRouteIndex = viewModel.persistedRoutesCount - 1
         mapSceneView.previousRouteButton.isEnabled = true
         
@@ -224,8 +218,8 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
     }
     
     func zoomOutButtonTapped() {
-        
         guard zoomValue < 100_000 else { return }
+        
         zoomValue += 300
         
         if let lastLocation = lastLocation {
@@ -234,8 +228,8 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
     }
     
     func previousRouteButtonTapped() {
-        
         guard currentRouteIndex > 0, isShowingPreviousRoute else { return }
+        
         currentRouteIndex -= 1
         showRoute(viewModel.getPersistedRoutes(), index: currentRouteIndex)
     }
@@ -248,7 +242,6 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
     }
     
     func deletePersistedRoutesButtonTapped() {
-        
         self.yesNoAlert(title: "Удалить все маршруты?", message: "Вы действительно желаете удалить все сохраненные маршруты?") { _ in
             self.isTracking = false
             self.isShowingPreviousRoute = false
@@ -262,7 +255,6 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
             }
         }
     }
-    
 }
 
 // MARK: - Additional extensions

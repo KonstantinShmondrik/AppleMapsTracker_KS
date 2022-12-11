@@ -26,6 +26,5 @@ final class MapSceneCoordinator: BaseCoordinator {
         controller)
         setAsRoot(rootController)
         self.rootController = rootController
-        
     }
 }

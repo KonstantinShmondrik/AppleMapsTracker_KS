@@ -9,8 +9,6 @@ import UIKit
 import CoreLocation
 import RealmSwift
 
-
-
 protocol MapsSceneViewDelegate: AnyObject {
     func removeAllOverlays()
     func showRoute(_ routesArray: [UserPersistedRoute], index: Int)
