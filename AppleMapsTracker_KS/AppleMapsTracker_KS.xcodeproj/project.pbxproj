@@ -16,6 +16,7 @@
 		00055865291C109100B27EB0 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055864291C109100B27EB0 /* ApplicationCoordinator.swift */; };
 		00055867291C12A100B27EB0 /* MapSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055866291C12A100B27EB0 /* MapSceneCoordinator.swift */; };
 		00055869291C12CB00B27EB0 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055868291C12CB00B27EB0 /* AuthCoordinator.swift */; };
+		0064DE962946103000FB1AB9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0064DE952946103000FB1AB9 /* UIImage+Extension.swift */; };
 		00B47E172937A82800A3F4FC /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B47E162937A82800A3F4FC /* NotificationsService.swift */; };
 		00CB3B8E2923FB9900C78640 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 00CB3B8D2923FB9900C78640 /* RxCocoa */; };
 		00CB3B962923FB9900C78640 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 00CB3B952923FB9900C78640 /* RxSwift */; };
@@ -45,6 +46,7 @@
 		00055864291C109100B27EB0 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		00055866291C12A100B27EB0 /* MapSceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSceneCoordinator.swift; sourceTree = "<group>"; };
 		00055868291C12CB00B27EB0 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		0064DE952946103000FB1AB9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		00B47E162937A82800A3F4FC /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		00FFDD8529182A1F00DA1C47 /* AppleMapsTracker_KS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMapsTracker_KS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		0064DE9429460FFD00FB1AB9 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				0064DE952946103000FB1AB9 /* UIImage+Extension.swift */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
 		00FFDD7C29182A1F00DA1C47 = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +235,7 @@
 		00FFDDA229182AC800DA1C47 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0064DE9429460FFD00FB1AB9 /* UIImage */,
 				00FFDDB92919417A00DA1C47 /* MapKit */,
 				00FFDDB62919412800DA1C47 /* Array */,
 				00FFDDB32919409F00DA1C47 /* Alert */,
@@ -410,6 +421,7 @@
 				00B47E172937A82800A3F4FC /* NotificationsService.swift in Sources */,
 				0005585E291BE06000B27EB0 /* RegistrationView.swift in Sources */,
 				00FFDDAD29192C3400DA1C47 /* MapsSceneViewController.swift in Sources */,
+				0064DE962946103000FB1AB9 /* UIImage+Extension.swift in Sources */,
 				00FFDDAF29192C5000DA1C47 /* MapsSceneView.swift in Sources */,
 				00FFDD8B29182A1F00DA1C47 /* SceneDelegate.swift in Sources */,
 				00FFDDB5291940AF00DA1C47 /* UIViewController+Alert.swift in Sources */,

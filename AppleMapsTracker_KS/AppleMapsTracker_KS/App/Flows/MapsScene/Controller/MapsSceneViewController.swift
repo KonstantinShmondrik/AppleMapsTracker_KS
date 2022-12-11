@@ -28,6 +28,7 @@ class MapsSceneViewController: UIViewController {
     // MARK: - Properties
     var zoomValue: Double = 300
     var lastLocation: CLLocation?
+    var avatarImage: UIImage?
     var currentRouteIndex: Int = 0 {
         didSet {
             if currentRouteIndex == 0 && viewModel.persistedRoutesCount == 2 {
@@ -287,6 +288,29 @@ extension MapsSceneViewController: MKMapViewDelegate {
         polyLineRenderer.lineWidth = 10
         
         return polyLineRenderer
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKPointAnnotation) else { return nil }
+        
+        var annotationView = mapSceneView.mapView.dequeueReusableAnnotationView(withIdentifier: mapSceneView.annotationIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: mapSceneView.annotationIdentifier)
+            annotationView!.canShowCallout = true
+        } else {
+            annotationView!.annotation = annotation
+        }
+        
+        annotationView?.layer.shadowColor = UIColor.black.cgColor
+        annotationView?.layer.shadowOpacity = 0.25
+        annotationView?.layer.shadowOffset = .zero
+        annotationView?.layer.shadowRadius = 5
+        
+        let pinImage = avatarImage ?? UIImage(named: "default-avatar")!
+        annotationView!.image = pinImage.imageResize(sizeChange: CGSize(width: 50.0, height: 50.0)).makeRounded()
+        
+        return annotationView
     }
 }
 

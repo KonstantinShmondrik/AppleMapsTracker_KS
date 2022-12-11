@@ -22,6 +22,7 @@ protocol MapsSceneViewProtocol: AnyObject {
 class MapsSceneView: UIView {
     
     weak var delegate: MapsSceneViewProtocol?
+    var annotationIdentifier = "AnnotationIdentifier"
     
     // MARK: - Subviews
     private(set) lazy var mapView: MKMapView = {
