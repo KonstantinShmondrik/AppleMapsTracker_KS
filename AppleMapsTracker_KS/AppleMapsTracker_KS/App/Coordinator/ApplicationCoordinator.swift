@@ -20,8 +20,10 @@ final class ApplicationCoordinator: BaseCoordinator {
     private func toMap() {
         let coordinator = MapSceneCoordinator()
         coordinator.onFinishFlow = { [weak self, weak coordinator] in
-            self?.removeDependency(coordinator)
-            self?.start()
+            guard let self = self else { return }
+            
+            self.removeDependency(coordinator)
+            self.start()
         }
         addDependency(coordinator)
         coordinator.start()
@@ -30,8 +32,10 @@ final class ApplicationCoordinator: BaseCoordinator {
     private func toAuth() {
         let coordinator = AuthCoordinator()
         coordinator.onFinishFlow = { [weak self, weak coordinator] in
-            self?.removeDependency(coordinator)
-            self?.start()
+            guard let self = self else { return }
+            
+            self.removeDependency(coordinator)
+            self.start()
         }
         addDependency(coordinator)
         coordinator.start()

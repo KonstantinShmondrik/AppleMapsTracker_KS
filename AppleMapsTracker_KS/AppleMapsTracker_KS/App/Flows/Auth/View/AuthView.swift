@@ -13,7 +13,6 @@ import RxCocoa
 protocol AuthViewProtocol: AnyObject {
     func tapLoginButton(login: String, password: String)
     func tapRegistButton()
-    
 }
 
 class AuthView: UIView {
@@ -79,13 +78,10 @@ class AuthView: UIView {
         return button
     }()
     
-
-    
     // MARK: - Properties
     weak var delegate: AuthViewProtocol?
     let disposeBag = DisposeBag()
    
-    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -94,7 +90,6 @@ class AuthView: UIView {
         setupRx()
         self.registerNotifications()
         self.hideKeyboardGesture()
-
     }
     
     required init?(coder: NSCoder) {
@@ -143,23 +138,18 @@ class AuthView: UIView {
     // MARK: - private func
  
     private func setupRx() {
-
         let isLoginValid = loginTexField.rx.text.orEmpty
             .map { $0.count >= 1 }
             .share(replay: 1)
-        
         let isPasswordValid = passwordTexField.rx.text.orEmpty
             .map { $0.count >= 1 }
             .share(replay: 1)
-        
         let isEverythingValid = Observable.combineLatest(isLoginValid, isPasswordValid) { (login, password) in
             return login && password
         }
-        
         isEverythingValid
             .bind(to: loginButton.rx.isEnabled)
             .disposed(by: disposeBag)
-        
         isEverythingValid
             .map { $0 ? 1.0 : 0.5 }
             .bind(to: loginButton.rx.alpha)
@@ -199,15 +189,12 @@ class AuthView: UIView {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else {
-            return
-        }
+        guard let userInfo = notification.userInfo else { return }
         
         var keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         var contentInset: UIEdgeInsets = self.scrollView.contentInset
         
         keyboardFrame = self.scrollView.convert(keyboardFrame, from: nil)
-        
         contentInset.bottom = keyboardFrame.size.height + 50
         scrollView.contentInset = contentInset
     }
