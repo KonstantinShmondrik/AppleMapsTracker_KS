@@ -11,7 +11,6 @@ import RealmSwift
 class RegistrationViewController: UIViewController {
     
     var onRegist: (() -> Void)?
-    
     private var authView: RegistrationView {
         return self.view as! RegistrationView
     }
@@ -60,16 +59,13 @@ class RegistrationViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         })
     }
-    
 }
 
 extension RegistrationViewController: RegistViewProtocol {
     func tapRegistButton(login: String, password: String) {
         let user = User()
-        
         user.login = login
         user.password = password
-        
         let userDB = realm.object(ofType: User.self, forPrimaryKey: login)
         if userDB?.login == login {
             self.yesNoAlert(title: "Пользователь уже существует", message: "Хотите сменить пароль?") { _ in

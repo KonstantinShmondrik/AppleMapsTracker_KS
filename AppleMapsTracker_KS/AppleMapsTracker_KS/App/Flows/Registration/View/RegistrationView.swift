@@ -41,6 +41,7 @@ class RegistrationView: UIView {
         textField.borderStyle = .bezel
         textField.attributedPlaceholder = NSAttributedString(string: "Введите логин", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         textField.textColor = .black
+        textField.autocorrectionType = .no
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         return textField
@@ -51,6 +52,8 @@ class RegistrationView: UIView {
         textField.borderStyle = .bezel
         textField.attributedPlaceholder = NSAttributedString(string: "Введите пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         textField.textColor = .black
+        textField.autocorrectionType = .no
+        textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         return textField
@@ -61,6 +64,8 @@ class RegistrationView: UIView {
         textField.borderStyle = .bezel
         textField.attributedPlaceholder = NSAttributedString(string: "Введите пароль повторно", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         textField.textColor = .black
+        textField.autocorrectionType = .no
+        textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         return textField
@@ -252,5 +257,4 @@ class RegistrationView: UIView {
         registButton.backgroundColor = .blue
         registButton.isEnabled = true
     }
-    
 }

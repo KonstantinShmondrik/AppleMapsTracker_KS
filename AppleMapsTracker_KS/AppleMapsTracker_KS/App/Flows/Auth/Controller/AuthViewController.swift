@@ -26,6 +26,7 @@ class AuthViewController: UIViewController {
         let view = AuthView()
         view.delegate = self
         self.view = view
+        
     }
     
     override func viewDidLoad() {
@@ -53,16 +54,12 @@ class AuthViewController: UIViewController {
     private func showError(_ errorMessage: String) {
         self.okAlert(title: "Ошибка авторизации", message: errorMessage, completionHandler: nil)
     }
-    
+
 }
 
 // MARK: - AuthViewProtocol
 extension AuthViewController: AuthViewProtocol {
-    
     func tapLoginButton(login: String, password: String) {
-        
-        guard login != "", password != "" else { return }
-        
         print(login, password, authenticated(login: login, password: password))
         
         if authenticated(login: login, password: password) {

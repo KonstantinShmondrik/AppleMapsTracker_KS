@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 
 protocol AuthViewProtocol: AnyObject {
     func tapLoginButton(login: String, password: String)
     func tapRegistButton()
-    
 }
 
 class AuthView: UIView {
@@ -33,6 +34,7 @@ class AuthView: UIView {
         textField.attributedPlaceholder = NSAttributedString(string: "Логин", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         textField.textColor = .black
         textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         return textField
@@ -43,6 +45,8 @@ class AuthView: UIView {
         textField.textColor = .black
         textField.attributedPlaceholder = NSAttributedString(string: "Пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         textField.borderStyle = .bezel
+        textField.autocorrectionType = .no
+        textField.isSecureTextEntry = true
         textField.autocapitalizationType = .none
         textField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -74,20 +78,18 @@ class AuthView: UIView {
         return button
     }()
     
-
-    
     // MARK: - Properties
     weak var delegate: AuthViewProtocol?
-    
+    let disposeBag = DisposeBag()
+   
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configureUI()
-        self.setupControls()
+        setupRx()
         self.registerNotifications()
         self.hideKeyboardGesture()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -134,22 +136,24 @@ class AuthView: UIView {
     }
     
     // MARK: - private func
-    
-    private func setupControls() {
-        loginButton.backgroundColor = UIColor.opaqueSeparator
-        loginButton.isEnabled = false
-        
-        [loginTexField, passwordTexField].forEach {
-            $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+ 
+    private func setupRx() {
+        let isLoginValid = loginTexField.rx.text.orEmpty
+            .map { $0.count >= 1 }
+            .share(replay: 1)
+        let isPasswordValid = passwordTexField.rx.text.orEmpty
+            .map { $0.count >= 1 }
+            .share(replay: 1)
+        let isEverythingValid = Observable.combineLatest(isLoginValid, isPasswordValid) { (login, password) in
+            return login && password
         }
-    }
-    
-    private func isFormFilled() -> Bool {
-        guard loginTexField.text != "",
-              passwordTexField.text != "" else {
-            return false
-        }
-        return true
+        isEverythingValid
+            .bind(to: loginButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        isEverythingValid
+            .map { $0 ? 1.0 : 0.5 }
+            .bind(to: loginButton.rx.alpha)
+            .disposed(by: disposeBag)
     }
     
     private func registerNotifications() {
@@ -169,13 +173,11 @@ class AuthView: UIView {
         
         scrollView.addGestureRecognizer(hideKeyboardGesture)
     }
-    
-   
+  
     // MARK: - Actions
     
     @objc private func loginButtonPressed() {
-        let userName = loginTexField.text ?? ""
-        let password = passwordTexField.text ?? ""
+        guard let userName = loginTexField.text, let password = passwordTexField.text else { return }
         delegate?.tapLoginButton(login: userName, password: password)
         loginTexField.text = ""
         passwordTexField.text = ""
@@ -187,15 +189,12 @@ class AuthView: UIView {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else {
-            return
-        }
+        guard let userInfo = notification.userInfo else { return }
         
         var keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         var contentInset: UIEdgeInsets = self.scrollView.contentInset
         
         keyboardFrame = self.scrollView.convert(keyboardFrame, from: nil)
-        
         contentInset.bottom = keyboardFrame.size.height + 50
         scrollView.contentInset = contentInset
     }
@@ -207,15 +206,5 @@ class AuthView: UIView {
     
     @objc func hideKeyboard() {
         self.scrollView.endEditing(true)
-    }
-    
-    @objc func editingChanged(_ textField: UITextField) {
-        guard isFormFilled() else {
-            loginButton.backgroundColor = UIColor.opaqueSeparator
-            loginButton.isEnabled = false
-            return
-        }
-        loginButton.backgroundColor = .blue
-        loginButton.isEnabled = true
     }
 }
