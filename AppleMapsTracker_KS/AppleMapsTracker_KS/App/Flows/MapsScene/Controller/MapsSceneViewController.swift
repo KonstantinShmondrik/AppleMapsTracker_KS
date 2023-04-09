@@ -10,11 +10,11 @@ import MapKit
 import CoreLocation
 import RealmSwift
 
-
-
 class MapsSceneViewController: UIViewController {
     
     // MARK: - Properties
+    var onLogOut: (() -> Void)?
+    
     lazy var viewModel = MapsSceneViewModel(locationManager: locationManager, realm: realm)
     
     private var mapSceneView: MapsSceneView {
@@ -28,6 +28,7 @@ class MapsSceneViewController: UIViewController {
     // MARK: - Properties
     var zoomValue: Double = 300
     var lastLocation: CLLocation?
+    var avatarImage: UIImage?
     var currentRouteIndex: Int = 0 {
         didSet {
             if currentRouteIndex == 0 && viewModel.persistedRoutesCount == 2 {
@@ -96,7 +97,7 @@ class MapsSceneViewController: UIViewController {
             }
         }
     }
-
+    
     // MARK: - Initialisers
     
     init() {
@@ -119,6 +120,7 @@ class MapsSceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.viewDelegate = self
+        setNavigationBar()
         setupScene()
     }
     
@@ -131,7 +133,7 @@ class MapsSceneViewController: UIViewController {
         mapSceneView.nextRouteButton.alpha = 0
         mapSceneView.zoomInButton.alpha = 0
         mapSceneView.zoomOutButton.alpha = 0
-       
+        
         UIView.animate(withDuration: 0.25) {
             self.mapSceneView.zoomInButton.alpha = 1
             self.mapSceneView.zoomOutButton.alpha = 1
@@ -144,17 +146,53 @@ class MapsSceneViewController: UIViewController {
         }
     }
     
+    private func setNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Текущее", style: .done, target: self, action: #selector(currentLocation))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Выйти", style: .done, target: self, action: #selector(logOut))
+    }
+    
+    private func presentImagePicker() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .camera
+        imagePickerController.cameraDevice = .front
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        
+        DispatchQueue.main.async {
+            self.present(imagePickerController, animated: true)
+        }
+    }
+    
+    // MARK: - Actions
+    @objc func currentLocation (sender: UIBarButtonItem) {
+        locationManager.requestLocation()
+    }
+    
+    @objc func logOut() {
+        UserDefaults.standard.set(false, forKey: "isLogin")
+        onLogOut?()
+    }
 }
 
 // MARK: - MapsSceneViewProtocol
 extension MapsSceneViewController: MapsSceneViewProtocol {
+    func selfieButtonTapped() {
+        presentImagePicker()
+    }
+    
     func startStopTrackingButtonTapped() {
-        
         isTracking.toggle()
         isShowingPreviousRoute = false
         removeAllOverlays()
         
-        if isTracking { viewModel.startTracking() } else { viewModel.stopTracking() }
+        if isTracking {
+            viewModel.startTracking()
+        } else {
+            viewModel.stopTracking()
+        }
         
         if !isTracking && viewModel.persistedRoutesCount > 0 {
             
@@ -167,7 +205,6 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
     }
     
     func showPreviousRouteButtonTapped() {
-        
         currentRouteIndex = viewModel.persistedRoutesCount - 1
         mapSceneView.previousRouteButton.isEnabled = true
         
@@ -182,7 +219,11 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
             isShowingPreviousRoute.toggle()
         }
         
-        if isShowingPreviousRoute { viewModel.loadRoutes() } else { removeAllOverlays() }
+        if isShowingPreviousRoute {
+            viewModel.loadRoutes()
+        } else {
+            removeAllOverlays()
+        }
     }
     
     func zoomInButtonTapped() {
@@ -196,8 +237,8 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
     }
     
     func zoomOutButtonTapped() {
-        
         guard zoomValue < 100_000 else { return }
+        
         zoomValue += 300
         
         if let lastLocation = lastLocation {
@@ -206,8 +247,8 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
     }
     
     func previousRouteButtonTapped() {
-        
         guard currentRouteIndex > 0, isShowingPreviousRoute else { return }
+        
         currentRouteIndex -= 1
         showRoute(viewModel.getPersistedRoutes(), index: currentRouteIndex)
     }
@@ -220,13 +261,12 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
     }
     
     func deletePersistedRoutesButtonTapped() {
-        
         self.yesNoAlert(title: "Удалить все маршруты?", message: "Вы действительно желаете удалить все сохраненные маршруты?") { _ in
             self.isTracking = false
             self.isShowingPreviousRoute = false
             self.removeAllOverlays()
             self.viewModel.deleteAllPersistedRoutes()
-        
+            
             UIView.animate(withDuration: 0.25) {
                 self.mapSceneView.deletePersistedRoutesButton.alpha = 0
                 self.mapSceneView.showPreviousRouteButton.alpha = 0
@@ -234,11 +274,36 @@ extension MapsSceneViewController: MapsSceneViewProtocol {
             }
         }
     }
-    
-    
 }
 
 // MARK: - Additional extensions
+extension MapsSceneViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        DispatchQueue.main.async {
+            self.isShowingPreviousRoute = false
+           
+            if let image = self.extractImage(from: info) {
+                self.avatarImage = image
+            }
+            picker.dismiss(animated: true)
+        }
+    }
+    
+    private func extractImage(from info: [UIImagePickerController.InfoKey: Any]) -> UIImage? {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            return image
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            return image
+        } else {
+            return nil
+        }
+    }
+}
+
 extension MapsSceneViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
@@ -269,12 +334,36 @@ extension MapsSceneViewController: MKMapViewDelegate {
         
         return polyLineRenderer
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKPointAnnotation) else { return nil }
+        
+        var annotationView = mapSceneView.mapView.dequeueReusableAnnotationView(withIdentifier: mapSceneView.annotationIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: mapSceneView.annotationIdentifier)
+            annotationView!.canShowCallout = true
+        } else {
+            annotationView!.annotation = annotation
+        }
+        
+        annotationView?.layer.shadowColor = UIColor.black.cgColor
+        annotationView?.layer.shadowOpacity = 0.25
+        annotationView?.layer.shadowOffset = .zero
+        annotationView?.layer.shadowRadius = 5
+        
+        let pinImage = avatarImage ?? UIImage(named: "default-avatar")!
+        annotationView!.image = pinImage.imageResize(sizeChange: CGSize(width: 50.0, height: 50.0)).makeRounded()
+        
+        return annotationView
+    }
 }
 
 // MARK: - Implementation
 extension MapsSceneViewController: MapsSceneViewDelegate {
     func removeAllOverlays() {
         mapSceneView.mapView.removeOverlays(mapSceneView.mapView.overlays)
+        mapSceneView.mapView.removeAnnotations(mapSceneView.mapView.annotations)
     }
     
     func showRoute(_ routesArray: [UserPersistedRoute], index: Int = 0) {
@@ -302,7 +391,14 @@ extension MapsSceneViewController: MapsSceneViewDelegate {
             let rect = mapSceneView.mapView.overlays.reduce(firstOverlay.boundingMapRect, {$0.union($1.boundingMapRect)})
             mapSceneView.mapView.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100), animated: true)
             zoomValue = mapSceneView.mapView.currentRadius()
-                }
+        }
+        
+        let distance = MKPointAnnotation()
+        distance.title = "Расстояние: \(viewModel.calculateDistance(coordinatesArray)) м."
+        guard let middle = coordinatesArray.middle else { return }
+        
+        distance.coordinate = middle
+        mapSceneView.mapView.addAnnotation(distance)
     }
     
     func showNoPersistedRoutesMessage() {

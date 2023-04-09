@@ -11,21 +11,16 @@ class CircularButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         layer.cornerRadius = self.frame.width / 2
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        
-       
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         backgroundColor = UIColor.white.withAlphaComponent(0.85)
-        
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.25
         layer.shadowOffset = .zero

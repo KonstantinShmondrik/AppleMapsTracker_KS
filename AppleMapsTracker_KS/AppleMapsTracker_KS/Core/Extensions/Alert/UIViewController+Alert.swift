@@ -27,4 +27,14 @@ extension UIViewController {
             completionHandler?()
         }
     }
+    
+    func okAlert(title: String = "", message: String, completionHandler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок",
+                                      style: .default,
+                                      handler: completionHandler))
+        present(alert, animated: true, completion: nil)
+    }
 }
