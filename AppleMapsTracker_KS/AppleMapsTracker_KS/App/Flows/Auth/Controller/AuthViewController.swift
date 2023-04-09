@@ -59,9 +59,7 @@ class AuthViewController: UIViewController {
 
 // MARK: - AuthViewProtocol
 extension AuthViewController: AuthViewProtocol {
-    
     func tapLoginButton(login: String, password: String) {
-        
         print(login, password, authenticated(login: login, password: password))
         
         if authenticated(login: login, password: password) {
