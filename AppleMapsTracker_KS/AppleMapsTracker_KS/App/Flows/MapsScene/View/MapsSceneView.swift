@@ -17,12 +17,13 @@ protocol MapsSceneViewProtocol: AnyObject {
     func previousRouteButtonTapped()
     func nextRouteButtonTapped()
     func deletePersistedRoutesButtonTapped()
+    func selfieButtonTapped()
 }
-
 
 class MapsSceneView: UIView {
     
     weak var delegate: MapsSceneViewProtocol?
+    var annotationIdentifier = "AnnotationIdentifier"
     
     // MARK: - Subviews
     private(set) lazy var mapView: MKMapView = {
@@ -94,6 +95,15 @@ class MapsSceneView: UIView {
         return button
     }()
     
+    private(set) lazy var selfieButton: CircularButton = {
+        let button = CircularButton()
+        button.setImage(UIImage(systemName: "camera.aperture"), for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.addTarget(self, action: #selector(selfieButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -118,6 +128,7 @@ class MapsSceneView: UIView {
         self.addSubview(self.previousRouteButton)
         self.addSubview(self.nextRouteButton)
         self.addSubview(self.deletePersistedRoutesButton)
+        self.addSubview(self.selfieButton)
         
         NSLayoutConstraint.activate([
             
@@ -130,6 +141,11 @@ class MapsSceneView: UIView {
             self.deletePersistedRoutesButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             self.deletePersistedRoutesButton.widthAnchor.constraint(equalToConstant: 50),
             self.deletePersistedRoutesButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            self.selfieButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 25),
+            self.selfieButton.leftAnchor.constraint(equalTo: self.deletePersistedRoutesButton.rightAnchor, constant: 50),
+            self.selfieButton.widthAnchor.constraint(equalToConstant: 50),
+            self.selfieButton.heightAnchor.constraint(equalToConstant: 50),
             
             self.showPreviousRouteButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             self.showPreviousRouteButton.widthAnchor.constraint(equalToConstant: 50),
@@ -160,24 +176,20 @@ class MapsSceneView: UIView {
             self.zoomOutButton.leftAnchor.constraint(equalTo: startStopTrackingButton.rightAnchor, constant: 10),
             self.zoomOutButton.widthAnchor.constraint(equalToConstant: 50),
             self.zoomOutButton.heightAnchor.constraint(equalToConstant: 50),
-            
         ])
     }
     
     // MARK: - Actions
     @objc func startStopTrackingButtonTapped() {
         self.delegate?.startStopTrackingButtonTapped()
-        
     }
     
     @objc func showPreviousRouteButtonTapped() {
         self.delegate?.showPreviousRouteButtonTapped()
-        
     }
     
     @objc func zoomInButtonTapped() {
         self.delegate?.zoomInButtonTapped()
-        
     }
     
     @objc func zoomOutButtonTapped() {
@@ -192,17 +204,15 @@ class MapsSceneView: UIView {
     
     @objc func nextRouteButtonTapped() {
         self.delegate?.nextRouteButtonTapped()
-        
     }
     
     @objc func deletePersistedRoutesButtonTapped() {
         self.delegate?.deletePersistedRoutesButtonTapped()
-        
     }
     
-    
-    
-    
+    @objc func selfieButtonTapped() {
+        self.delegate?.selfieButtonTapped()
+    }
 }
 
 

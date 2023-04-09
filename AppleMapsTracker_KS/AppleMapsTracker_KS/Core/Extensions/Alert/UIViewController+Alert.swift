@@ -37,5 +37,4 @@ extension UIViewController {
                                       handler: completionHandler))
         present(alert, animated: true, completion: nil)
     }
-    
 }

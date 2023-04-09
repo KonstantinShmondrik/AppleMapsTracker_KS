@@ -16,6 +16,10 @@
 		00055865291C109100B27EB0 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055864291C109100B27EB0 /* ApplicationCoordinator.swift */; };
 		00055867291C12A100B27EB0 /* MapSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055866291C12A100B27EB0 /* MapSceneCoordinator.swift */; };
 		00055869291C12CB00B27EB0 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00055868291C12CB00B27EB0 /* AuthCoordinator.swift */; };
+		0064DE962946103000FB1AB9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0064DE952946103000FB1AB9 /* UIImage+Extension.swift */; };
+		00B47E172937A82800A3F4FC /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B47E162937A82800A3F4FC /* NotificationsService.swift */; };
+		00CB3B8E2923FB9900C78640 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 00CB3B8D2923FB9900C78640 /* RxCocoa */; };
+		00CB3B962923FB9900C78640 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 00CB3B952923FB9900C78640 /* RxSwift */; };
 		00FFDD8929182A1F00DA1C47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */; };
 		00FFDD8B29182A1F00DA1C47 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */; };
 		00FFDD9229182A2300DA1C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00FFDD9129182A2300DA1C47 /* Assets.xcassets */; };
@@ -42,6 +46,8 @@
 		00055864291C109100B27EB0 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		00055866291C12A100B27EB0 /* MapSceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSceneCoordinator.swift; sourceTree = "<group>"; };
 		00055868291C12CB00B27EB0 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		0064DE952946103000FB1AB9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		00B47E162937A82800A3F4FC /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		00FFDD8529182A1F00DA1C47 /* AppleMapsTracker_KS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMapsTracker_KS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,7 +69,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00CB3B962923FB9900C78640 /* RxSwift in Frameworks */,
 				00FFDDC4291948DB00DA1C47 /* RealmSwift in Frameworks */,
+				00CB3B8E2923FB9900C78640 /* RxCocoa in Frameworks */,
 				00FFDDC2291948DB00DA1C47 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,6 +140,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		0064DE9429460FFD00FB1AB9 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				0064DE952946103000FB1AB9 /* UIImage+Extension.swift */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
 		00FFDD7C29182A1F00DA1C47 = {
 			isa = PBXGroup;
 			children = (
@@ -165,18 +181,19 @@
 				00FFDD8829182A1F00DA1C47 /* AppDelegate.swift */,
 				00FFDD8A29182A1F00DA1C47 /* SceneDelegate.swift */,
 				00055861291C0DA900B27EB0 /* Coordinator */,
-				00FFDD9D29182A7A00DA1C47 /* BusinessLogic */,
+				00FFDD9D29182A7A00DA1C47 /* Services */,
 				00FFDD9E29182A8B00DA1C47 /* Entity */,
 				00FFDD9F29182A9700DA1C47 /* Flows */,
 			);
 			path = App;
 			sourceTree = "<group>";
 		};
-		00FFDD9D29182A7A00DA1C47 /* BusinessLogic */ = {
+		00FFDD9D29182A7A00DA1C47 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				00B47E162937A82800A3F4FC /* NotificationsService.swift */,
 			);
-			path = BusinessLogic;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		00FFDD9E29182A8B00DA1C47 /* Entity */ = {
@@ -218,6 +235,7 @@
 		00FFDDA229182AC800DA1C47 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0064DE9429460FFD00FB1AB9 /* UIImage */,
 				00FFDDB92919417A00DA1C47 /* MapKit */,
 				00FFDDB62919412800DA1C47 /* Array */,
 				00FFDDB32919409F00DA1C47 /* Alert */,
@@ -327,6 +345,8 @@
 			packageProductDependencies = (
 				00FFDDC1291948DB00DA1C47 /* Realm */,
 				00FFDDC3291948DB00DA1C47 /* RealmSwift */,
+				00CB3B8D2923FB9900C78640 /* RxCocoa */,
+				00CB3B952923FB9900C78640 /* RxSwift */,
 			);
 			productName = AppleMapsTracker_KS;
 			productReference = 00FFDD8529182A1F00DA1C47 /* AppleMapsTracker_KS.app */;
@@ -358,6 +378,7 @@
 			mainGroup = 00FFDD7C29182A1F00DA1C47;
 			packageReferences = (
 				00FFDDC0291948DB00DA1C47 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				00CB3B882923FB9900C78640 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 00FFDD8629182A1F00DA1C47 /* Products */;
 			projectDirPath = "";
@@ -397,8 +418,10 @@
 				00055854291BDACC00B27EB0 /* AuthViewController.swift in Sources */,
 				00055869291C12CB00B27EB0 /* AuthCoordinator.swift in Sources */,
 				00FFDDBB291941ED00DA1C47 /* MapKitExtensions.swift in Sources */,
+				00B47E172937A82800A3F4FC /* NotificationsService.swift in Sources */,
 				0005585E291BE06000B27EB0 /* RegistrationView.swift in Sources */,
 				00FFDDAD29192C3400DA1C47 /* MapsSceneViewController.swift in Sources */,
+				0064DE962946103000FB1AB9 /* UIImage+Extension.swift in Sources */,
 				00FFDDAF29192C5000DA1C47 /* MapsSceneView.swift in Sources */,
 				00FFDD8B29182A1F00DA1C47 /* SceneDelegate.swift in Sources */,
 				00FFDDB5291940AF00DA1C47 /* UIViewController+Alert.swift in Sources */,
@@ -545,12 +568,14 @@
 				DEVELOPMENT_TEAM = T8K8YS2863;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppleMapsTracker_KS/Environments/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Для селфи";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Очень надо для работы приложения";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -574,12 +599,14 @@
 				DEVELOPMENT_TEAM = T8K8YS2863;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppleMapsTracker_KS/Environments/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Для селфи";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "очкунь надо jxtym jxtym jxtym";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Очень надо для работы приложения";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -617,6 +644,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		00CB3B882923FB9900C78640 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		00FFDDC0291948DB00DA1C47 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -628,6 +663,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		00CB3B8D2923FB9900C78640 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00CB3B882923FB9900C78640 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		00CB3B952923FB9900C78640 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00CB3B882923FB9900C78640 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
 		00FFDDC1291948DB00DA1C47 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 00FFDDC0291948DB00DA1C47 /* XCRemoteSwiftPackageReference "realm-swift" */;
